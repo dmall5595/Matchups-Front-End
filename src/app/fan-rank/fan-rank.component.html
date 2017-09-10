@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>
+    Fan Rank
+  </h1>
+  <ul class="players">
+    <li *ngFor="let player of players; let i = index">
+      <div class="row">
+        <div class="col">
+          Rank: {{i+1}}
+        </div>
+        <div class="col">
+            <p>
+                {{player.name}} <br>
+                Position: {{player.position}}
+            </p>
+        </div>
+        <div class="col">
+          <button (click)="moveUp(i)">
+            up
+          </button>      
+          <button (click)="moveDown(i)">
+              down
+            </button>   
+        </div>
+      </div>
+    </li>
+  </ul>
+  
+</div>
+

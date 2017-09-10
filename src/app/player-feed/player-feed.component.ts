@@ -33,4 +33,7 @@ export class PlayerFeedComponent {
       teaserImage: "../assets/m3.jpg" },
   ];
 
+
+
+
 }

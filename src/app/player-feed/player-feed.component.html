@@ -8,7 +8,6 @@
     <h6><a href="#"> {{article.title}} </a></h6>
     <div *ngIf="article.preview">
     <p> {{article.preview}} </p>
-      
     </div>
     <p>
       <b> {{article.author}} </b> {{article.date}}
@@ -17,3 +16,6 @@
     </div>
   </li>
 </ul>
+<button (click)="switchItem()">
+  click
+</button>

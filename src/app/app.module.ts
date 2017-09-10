@@ -5,14 +5,16 @@ import { RouterModule }   from '@angular/router';
 import { AppComponent } from './app.component';
 import { PlayerFeedComponent } from './player-feed/player-feed.component';
 import { PlayerComponent } from './player/player.component';
-import { ArticleComponent } from './article/article.component'
+import { ArticleComponent } from './article/article.component';
+import { FanRankComponent } from './fan-rank/fan-rank.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     PlayerFeedComponent,
     PlayerComponent,
-    ArticleComponent
+    ArticleComponent,
+    FanRankComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +26,11 @@ import { ArticleComponent } from './article/article.component'
       {
         path: 'article',
         component: ArticleComponent
-      }
+      },
+      {
+        path: 'fan-rank',
+        component: FanRankComponent
+      },
     ])
   ],
   providers: [],
