@@ -1,0 +1,19 @@
+<ul class="articles">
+  <li *ngFor="let article of articles">
+    <div class="row">
+      <div class="col-4">
+    <img src={{article.teaserImage}} style="width:100%">
+      </div>
+      <div class="col-8">
+    <h6><a href="#"> {{article.title}} </a></h6>
+    <div *ngIf="article.preview">
+    <p> {{article.preview}} </p>
+      
+    </div>
+    <p>
+      <b> {{article.author}} </b> {{article.date}}
+    </p>
+      </div>
+    </div>
+  </li>
+</ul>

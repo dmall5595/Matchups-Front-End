@@ -1,0 +1,11 @@
+li {
+    padding: 2%;
+    list-style-type: none;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+}
+
+p {
+    font-size:50%;
+}
