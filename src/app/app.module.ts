@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule }   from '@angular/router';
+import { DndModule } from 'ng2-dnd';
 
 import { AppComponent } from './app.component';
 import { PlayerFeedComponent } from './player-feed/player-feed.component';
@@ -18,6 +19,7 @@ import { FanRankComponent } from './fan-rank/fan-rank.component'
   ],
   imports: [
     BrowserModule,
+    DndModule.forRoot(),
     RouterModule.forRoot([
       {
         path: 'player',
