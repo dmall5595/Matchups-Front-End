@@ -10,8 +10,6 @@ export class FanRankComponent implements OnInit {
 
   constructor() { }
 
-  listOne: Array<string> = ['Coffee', 'Orange Juice', 'Red Wine', 'Unhealty drink!', 'Water'];  
-
   players: FanRankItem[] = [
     { id: 1,
       name: "Lebron James",
