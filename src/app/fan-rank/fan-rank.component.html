@@ -2,15 +2,22 @@
   <h1>
     Fan Rank
   </h1>   
+  <div class="text-center">
+    <p>
+        <button type="button" class="btn btn-primary">Edit</button> 
+        <button type="button" class="btn btn-secondary">Save</button>
+      </p>   
+  </div>
   <ul class="list-group" dnd-sortable-container [sortableData]="players">
     <li *ngFor="let player of players; let i = index;" class="list-group-item" dnd-sortable [sortableIndex]="i">
       <div class="row">
         <div class="col-5">
-          <img src="../assets/default.png" style="width:50%">
+          <img src={{player.url}} style="width:50%">
         </div>
         <div class="col-5">
-            {{player.name}} 
+            {{player.first_name}} {{player.last_name}} 
             <p class="test">Position: {{player.position}}</p>
+            
           </div>   
         <div class="col-2">
           <p> {{i+1}} </p>

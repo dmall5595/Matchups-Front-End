@@ -10,48 +10,69 @@ export class FanRankComponent implements OnInit {
 
   constructor() { }
 
+  url = 'https://nba-players.herokuapp.com/players/'
+  
   players: FanRankItem[] = [
     { id: 1,
-      name: "Lebron James",
+      first_name: "Lebron",
+      last_name: "James",
       position: "SF",
-      score: 10.0, 
-    },
+      score: 10.0,
+      url: 'https://nba-players.herokuapp.com/players/james', },
     { id: 2,
-      name: "Russel Westbrook",
+      first_name: "Russell",
+      last_name: "Westbrook",
       position: "PG",
-      score: 9.0, },
+      score: 9.0, 
+      url: '', },
     { id: 3,
-      name: "James Harden",
+      first_name: "James",
+      last_name: "Harden",
       position: "PG",
-      score: 8.0, },
+      score: 8.0, 
+      url: '', },
     { id: 4,
-      name: "Kawhi Leonard",
+      first_name: "Kawhi",
+      last_name: "Leonard",
       position: "SF",
-      score: 7.0, },
+      score: 7.0, 
+      url: '', },
     { id: 5,
-      name: "Stephen Curry",
+      first_name: "Stephen",
+      last_name: "Curry",
       position: "PG",
-      score: 6.0, },
+      score: 6.0, 
+      url: '', },
     { id: 6,
-      name: "Kevin Durant",
+      first_name: "Kevin",
+      last_name: "Durant",
       position: "SF",
-      score: 5.0, },
+      score: 5.0, 
+      url: '', },
     { id: 7,
-      name: "Giannis Antetokounmpo",
+      first_name: "Giannis",
+      last_name: "Antetokounmpo",
       position: "SF",
-      score: 4.0, },
+      score: 4.0, 
+      url: '', },
     { id: 8,
-      name: "Chris Paul",
+      first_name: "Chris",
+      last_name: "Paul",
       position: "PG",
-      score: 3.0, },
+      score: 3.0, 
+      url: '', },
     { id: 9,
-      name: "Jimmy Butler",
+      first_name: "Jimmy",
+      last_name: "Butler",
       position: "SG",
-      score: 2.0, },
+      score: 2.0, 
+      url: '', },
     { id: 10,
-      name: "Draymond Green",
+      first_name: "Draymond",
+      last_name: "Green",
       position: "SF",
-      score: 1.0, }
+      score: 1.0, 
+      url: '', }
   ];
 
   moveUp(idx: number) {
@@ -71,7 +92,15 @@ export class FanRankComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+    console.log(this.url + this.players[0].last_name)
+    this.generateUrl()
+  }
+
+  generateUrl() {
+    this.players.forEach(element => {
+      if (element.first_name != "Lebron")
+        element.url = 'https://nba-players.herokuapp.com/players/' + element.last_name + '/' + element.first_name;         
+    });
   }
 
 }
