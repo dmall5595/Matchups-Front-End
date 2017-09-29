@@ -1,18 +1,27 @@
-<div class="container ">
+<div class="container">
     <h1 style="margin:0;">
       Matchups
     </h1>   
     <div class="numToShow text-center">
       <div class="row">
         <div class="col">
-          <p style="padding: 3%;margin: 0;font-size:12px;">
-            <!-- <button type="button" class="btn btn-primary">Edit</button> 
-            <button type="button" class="btn btn-secondary">Save</button> -->
-            Matchups from top <input style="width: 26px;color:blue" [(ngModel)]="numToShow" placeholder="10"/> players
+            <p class="selector">
+                <button (click)="goToMatchups()" type="button" class="btn btn-primary">Matchups</button> 
+                <button (click)="goToRanks()" type="button" class="btn btn-secondary">Ranks</button>
+              </p> 
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <p *ngIf="showMatchups" style="padding: 3%;margin: 0;font-size:12px;">
+              Matchups from top <input style="width: 26px;color:blue" [(ngModel)]="numToShow" /> players
+          </p> 
+          <p *ngIf="showRank" style="padding: 3%;margin: 0;font-size:12px;">
+            Show top <input style="width: 26px;color:blue" [(ngModel)]="numToShow" /> players
           </p> 
         </div>     
       </div>
-      <div class="row">
+      <div class="row" *ngIf="showMatchups">
         <div class="col-md-4">
           <a (click)="choose('a')">
             <img src={{playera.img}} style="width:60%; border:1px solid #000000"> 
@@ -30,5 +39,22 @@
           </a>
         </div>
       </div>
-    </div>
+            <ul *ngIf="showRank" class="list-group" dnd-sortable-container [sortableData]="players">
+                <li *ngFor="let player of players; let i = index;" class="list-group-item">
+                  <div class="row">
+                    <div class="col-5">
+                      <img src={{player.url}} style="width:50%">
+                    </div>
+                    <div class="col-5">
+                        {{player.first_name}} {{player.last_name}} 
+                        <p class="test">Position: {{player.position}}</p>
+                        <p style="font-size:12px;"> x votes this month</p>
+                      </div>   
+                    <div class="col-2">
+                      <p> {{i+1}} </p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
   </div>
+</div>

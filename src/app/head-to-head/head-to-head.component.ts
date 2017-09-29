@@ -11,7 +11,10 @@ export class HeadToHeadComponent implements OnInit {
 
   constructor() { }
 
-  @Input() numToShow = 350
+  showRank = false
+  showMatchups = true
+
+  @Input() numToShow = 10
   playera = {
     name: "",
     img: ''
@@ -90,6 +93,15 @@ export class HeadToHeadComponent implements OnInit {
 
   ngOnInit() {
     this.makeChoice()
+    this.generateUrl()
+    
+  }
+
+  generateUrl() {
+    this.players.forEach(element => {
+      if (element.first_name != "Lebron")
+        element.url = 'https://nba-players.herokuapp.com/players/' + element.last_name + '/' + element.first_name;         
+    });
   }
 
   choose(result) {
@@ -120,6 +132,16 @@ export class HeadToHeadComponent implements OnInit {
       this.playerb.img = 'https://nba-players.herokuapp.com/players/' + this.choice2.last_name + '/' + this.choice2.first_name;
     else
       this.playerb.img = 'https://nba-players.herokuapp.com/players/james'
+  }
+
+  goToRanks() {
+    this.showMatchups = false
+    this.showRank = true
+  }
+
+  goToMatchups() {
+    this.showMatchups = true
+    this.showRank = false
   }
   
 
