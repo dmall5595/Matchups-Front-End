@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeadToHeadComponent } from './head-to-head.component';
+import { MatchupsComponent } from './matchups.component';
 
 describe('HeadToHeadComponent', () => {
-  let component: HeadToHeadComponent;
-  let fixture: ComponentFixture<HeadToHeadComponent>;
+  let component: MatchupsComponent;
+  let fixture: ComponentFixture<MatchupsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeadToHeadComponent ]
+      declarations: [ MatchupsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HeadToHeadComponent);
+    fixture = TestBed.createComponent(MatchupsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -9,7 +9,7 @@ import { PlayerFeedComponent } from './player-feed/player-feed.component';
 import { PlayerComponent } from './player/player.component';
 import { ArticleComponent } from './article/article.component';
 import { FanRankComponent } from './fan-rank/fan-rank.component';
-import { HeadToHeadComponent } from './head-to-head/head-to-head.component'
+import { MatchupsComponent } from './matchups/matchups.component'
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { HeadToHeadComponent } from './head-to-head/head-to-head.component'
     PlayerComponent,
     ArticleComponent,
     FanRankComponent,
-    HeadToHeadComponent
+    MatchupsComponent
   ],
   imports: [
     BrowserModule,
@@ -38,8 +38,8 @@ import { HeadToHeadComponent } from './head-to-head/head-to-head.component'
         component: FanRankComponent
       },
       {
-        path: 'head-to-head',
-        component: HeadToHeadComponent
+        path: 'matchups',
+        component: MatchupsComponent
       },
     ])
   ],

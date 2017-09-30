@@ -3,11 +3,11 @@ import { FanRankItem } from '../models/fan-rank-item';
 
 
 @Component({
-  selector: 'app-head-to-head',
-  templateUrl: './head-to-head.component.html',
-  styleUrls: ['./head-to-head.component.css']
+  selector: 'app-matchups',
+  templateUrl: './matchups.component.html',
+  styleUrls: ['./matchups.component.css']
 })
-export class HeadToHeadComponent implements OnInit {
+export class MatchupsComponent implements OnInit {
 
   constructor() { }
 
