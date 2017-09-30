@@ -6,8 +6,8 @@
       <div class="row">
         <div class="col">
             <p class="selector">
-                <button (click)="goToMatchups()" type="button" class="btn btn-primary">Matchups</button> 
-                <button (click)="goToRanks()" type="button" class="btn btn-secondary">Ranks</button>
+                <button [ngStyle]="{'color':matchupsText, 'background-color':matchupsBG}" (click)="goToMatchups()" type="button" class="btn"> Matchups</button> 
+                <button [ngStyle]="{'color':ranksText, 'background-color':ranksBG}" (click)="goToRanks()" type="button" class="btn" >Ranks</button>
               </p> 
         </div>
       </div>
@@ -40,12 +40,15 @@
         </div>
       </div>
             <ul *ngIf="showRank" class="list-group" dnd-sortable-container [sortableData]="players">
-                <li *ngFor="let player of players; let i = index;" class="list-group-item">
+                <li *ngFor="let player of players; let i = index;" class="list-group-item" (click)="choosePlayer(player)">
                   <div class="row">
                     <div class="col-5">
-                      <img src={{player.url}} style="width:50%">
+                      <img src={{player.url}} style="width:80%">
                     </div>
-                    <div class="col-5">
+                    <div *ngIf=player.selected class="col-1" style="font-size:10px">
+                      SELECTED
+                    </div>
+                    <div class="col-4">
                         {{player.first_name}} {{player.last_name}} 
                         <p class="test">Position: {{player.position}}</p>
                         <p style="font-size:12px;"> x votes this month</p>

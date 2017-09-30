@@ -5,4 +5,5 @@ export class FanRankItem {
     position: string;
     score: number;
     url: string;
+    selected: boolean = false;
   }
