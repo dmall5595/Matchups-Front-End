@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FanRankItem } from '../models/fan-rank-item';
+import { MatchupsService } from '../matchups.service'
 
 
 @Component({
@@ -9,7 +10,7 @@ import { FanRankItem } from '../models/fan-rank-item';
 })
 export class MatchupsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private matchupsService: MatchupsService) { }
 
   showRank = false
   showMatchups = true
@@ -20,98 +21,40 @@ export class MatchupsComponent implements OnInit {
   ranksText = 'black'
   ranksBG = '#bec0d6'
 
+  temp: any
+  newTemp: any  
+  temp3: any
 
   @Input() numToShow = 10
   playera = {
     name: "",
-    img: ''
+    img: '',
+    id: 0,
+    score: 0
   }
 
   playerb = {
     name: "",
-    img: ''
+    img: '',
+    id: 0,
+    score: 0
   }
 
   choice1:FanRankItem;
   choice2:FanRankItem;
 
-  players: FanRankItem[] = [
-    { id: 1,
-      first_name: "Lebron",
-      last_name: "James",
-      position: "SF",
-      score: 10.0,
-      url: '../assets/n-lebron.png', 
-      selected: false },
-    { id: 2,
-      first_name: "Russell",
-      last_name: "Westbrook",
-      position: "PG",
-      score: 9.0, 
-      url: '', 
-      selected: false },
-    { id: 3,
-      first_name: "James",
-      last_name: "Harden",
-      position: "PG",
-      score: 8.0, 
-      url: '', 
-      selected: false },
-    { id: 4,
-      first_name: "Kawhi",
-      last_name: "Leonard",
-      position: "SF",
-      score: 7.0, 
-      url: '', 
-      selected: false },
-    { id: 5,
-      first_name: "Stephen",
-      last_name: "Curry",
-      position: "PG",
-      score: 6.0, 
-      url: '', 
-      selected: false },
-    { id: 6,
-      first_name: "Kevin",
-      last_name: "Durant",
-      position: "SF",
-      score: 5.0, 
-      url: '', 
-      selected: false },
-    { id: 7,
-      first_name: "Giannis",
-      last_name: "Antetokounmpo",
-      position: "SF",
-      score: 4.0, 
-      url: '', 
-      selected: false },
-    { id: 8,
-      first_name: "Chris",
-      last_name: "Paul",
-      position: "PG",
-      score: 3.0, 
-      url: '', 
-      selected: false },
-    { id: 9,
-      first_name: "Jimmy",
-      last_name: "Butler",
-      position: "SG",
-      score: 2.0, 
-      url: '', 
-      selected: false },
-    { id: 10,
-      first_name: "Draymond",
-      last_name: "Green",
-      position: "SF",
-      score: 1.0, 
-      url: '', 
-      selected: false }
-  ];
+  posts: any = [];
+
+  players: FanRankItem[]
 
   ngOnInit() {
-    this.makeChoice()
-    this.generateUrl()
-    
+    this.matchupsService.getAllPlayers().subscribe(data => {
+      this.players = data
+      this.makeChoice()  
+      this.generateUrl()            
+    });
+
+    this.matchupsService.updateScore('59d5a67d2af77462a28ffee1', 1.5).subscribe()
   }
 
   generateUrl() {
@@ -122,6 +65,12 @@ export class MatchupsComponent implements OnInit {
   }
 
   choose(result) {
+      if (result == 'a') {
+        console.log(this.playera)        
+      } else {
+
+      }
+      
       this.makeChoice()
   }
     
@@ -135,14 +84,14 @@ export class MatchupsComponent implements OnInit {
     this.playera.name = this.choice1.first_name + " " + this.choice1.last_name;
     if (this.choice1.first_name != 'Lebron')
       this.playera.img = 'https://nba-players.herokuapp.com/players/' + this.choice1.last_name + '/' + this.choice1.first_name;
-    else
-      this.playera.img = '../assets/n-lebron.png'
+    this.playera.id = this.choice1.id
+    this.playera.score = this.choice1.score
 
     this.playerb.name = this.choice2.first_name + " " + this.choice2.last_name;
     if (this.choice2.first_name != 'Lebron')
       this.playerb.img = 'https://nba-players.herokuapp.com/players/' + this.choice2.last_name + '/' + this.choice2.first_name;
-    else
-      this.playerb.img = '../assets/n-lebron.png'
+    this.playerb.id = this.choice2.id
+    this.playerb.score = this.choice2.score
   }
 
   goToRanks() {

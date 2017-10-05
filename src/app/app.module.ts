@@ -3,6 +3,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule }   from '@angular/router';
 import { DndModule } from 'ng2-dnd';
 import { FormsModule }   from '@angular/forms';
+import { HttpModule }    from '@angular/http';
+//import {HttpClientModule} from '@angular/common/http';
+
+// Imports for loading & configuring the in-memory web api
+//import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+// import { InMemoryDataService }  from './in-memory-data.service';
 
 import { AppComponent } from './app.component';
 import { PlayerFeedComponent } from './player-feed/player-feed.component';
@@ -11,6 +17,8 @@ import { ArticleComponent } from './article/article.component';
 import { FanRankComponent } from './fan-rank/fan-rank.component';
 import { MatchupsComponent } from './matchups/matchups.component'
 
+import { MatchupsService } from './matchups.service'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,12 +26,14 @@ import { MatchupsComponent } from './matchups/matchups.component'
     PlayerComponent,
     ArticleComponent,
     FanRankComponent,
-    MatchupsComponent
+    MatchupsComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
     DndModule.forRoot(),
+    // InMemoryWebApiModule.forRoot(InMemoryDataService),
     RouterModule.forRoot([
       {
         path: 'player',
@@ -43,7 +53,7 @@ import { MatchupsComponent } from './matchups/matchups.component'
       },
     ])
   ],
-  providers: [],
+  providers: [MatchupsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
