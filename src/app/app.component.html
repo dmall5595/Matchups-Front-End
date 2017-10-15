@@ -1,21 +1,24 @@
-  <nav class="navbar navbar-toggleable-md navbar-inverse"style="background-color: #1b87e5;">
+  <!-- <nav class="navbar navbar-toggleable-md navbar-inverse"style="background-color: #1b87e5;">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" routerLink="/" >LOGO</a>
+      <a class="navbar-brand" routerLink="/" >Matchups</a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" routerLink="/player" href="#">Player</a>
+            <a class="nav-link" routerLink="/howitworks" data-toggle="collapse" data-target="#navbarSupportedContent" href="#">How it works</a>
           </li>
-          <li class="nav-item">
-              <a class="nav-link" routerLink="/article" href="#">Article</a>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/matchups" href="#">NBA Players</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/fan-rank" href="#">Fan Rank</a>
+              <a class="nav-link" routerLink="/comingsoon"  >NBA Teams</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/matchups" href="#">Matchups</a>
+              <a class="nav-link" routerLink="/comingsoon" href="#">NFL Players</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/comingsoon" href="#">NFL Teams</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -23,6 +26,77 @@
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>
+    </nav> -->
+
+    <!-- <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">Navbar</a>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="/howitworks" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/matchups" href="#">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+          </li>
+        </ul>
+      </div>
+    </nav> -->
+
+    <nav class="navbar navbar-inverse bg-faded" style="background-color: #1b87e5;">
+      <button class="navbar-toggler navbar-toggler-right" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed" aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation">
+        &#9776;
+      </button>
+      <a class="navbar-brand" (click)="isNavbarCollapsed = true" routerLink="/" >Matchups</a>      
+      <!-- <a class="navbar-brand" href="#">Navbar</a>       -->
+      <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-toggleable-md" id="exCollapsingNavbar2">
+        <ul class="nav navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" (click)="isNavbarCollapsed = !isNavbarCollapsed"  routerLink="/howitworks" href="#"> How This Works </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="isNavbarCollapsed = !isNavbarCollapsed"  routerLink="/matchups" href="#"> NBA Players</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="isNavbarCollapsed = !isNavbarCollapsed"  routerLink="/comingsoon" href="#">NBA Teams</a>
+          </li>
+        </ul>
+      </div>
     </nav>
+
+    <!-- <nav class="navbar navbar-light bg-faded">
+      <button class="navbar-toggler hidden-sm-up" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed" aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation">
+        &#9776;
+      </button>
+      <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
+        <a class="navbar-brand" href="#">Responsive navbar</a>
+        <ul class="nav navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+        </ul>
+      </div>
+    </nav> -->
     <router-outlet></router-outlet>
     
+    <div class="container" class="text-center" style="padding-top:20%;">
+      <p style="font-size:8px;">Made by <a href="http://danmallon.com">Dan</a>. <br>
+      Copyright © 2017 Matchups DM, LLC. All rights reserved.</p>
+    </div>

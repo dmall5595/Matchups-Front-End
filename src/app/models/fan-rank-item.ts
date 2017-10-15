@@ -6,4 +6,5 @@ export class FanRankItem {
     score: number;
     url: string;
     selected: boolean = false;
+    numVotes: number;
   }

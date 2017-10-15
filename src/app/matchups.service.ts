@@ -22,17 +22,17 @@ export class MatchupsService {
     .map(res => res.json());
   }
 
-  updateScore(id1: string, newScore1: Number, id2: string, newScore2: Number) {    
+  updateScore(id1: string, newScore1: Number, newVote1: Number, id2: string, newScore2: Number, newVote2: Number) {    
     let headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
     let body = new URLSearchParams();
     body.set('id1', id1);
-    //console.log(newScore)
     body.set('score1', newScore1.toString());
+    body.set('newVote1', newVote1.toString());
     body.set('id2', id2);
-    //console.log(newScore)
     body.set('score2', newScore2.toString());
+    body.set('newVote2', newVote2.toString());    
 
     return this.http.put('http://localhost:8000/notes', body.toString(), {headers: headers});
     

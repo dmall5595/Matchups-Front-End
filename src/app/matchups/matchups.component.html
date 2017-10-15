@@ -1,30 +1,39 @@
 <div class="container">
     <h1 style="margin:0;">
-      Matchups
+      NBA Players
     </h1>   
     <div class="numToShow text-center">
       <div class="row">
         <div class="col">
             <p class="selector">
-                <button [ngStyle]="{'color':matchupsText, 'background-color':matchupsBG}" (click)="goToMatchups()" type="button" class="btn"> Matchups</button> 
-                <button [ngStyle]="{'color':ranksText, 'background-color':ranksBG}" (click)="goToRanks()" type="button" class="btn" >Ranks</button>
-              </p> 
+              <button [ngStyle]="{'color':matchupsText, 'background-color':matchupsBG}" (click)="goToMatchups()" type="button" class="btn"> Matchups</button> 
+              <button [ngStyle]="{'color':ranksText, 'background-color':ranksBG}" (click)="goToRanks()" type="button" class="btn" >Ranks</button>
+            </p> 
         </div>
       </div>
       <div class="row">
         <div class="col">
           <p *ngIf="showMatchups" style="padding: 3%;margin: 0;font-size:12px;">
-              Matchups from top <input type="number" style="width: 26px;color:blue" [(ngModel)]="numToShow" /> players
+            Matchups from top <input type="number" style="width: 40px;color:blue" [(ngModel)]="numToShow" (ngModelChange)="keepNumToShow()" /> players
           </p> 
-          <p *ngIf="showRank" style="padding: 3%;margin: 0;font-size:12px;">
-            Show top <input type="number" style="width: 26px;color:blue" [(ngModel)]="numToShow" /> players
+          <p *ngIf="showRanks" style="padding: 3%;margin: 0;font-size:12px;">
+            Show top <input type="number" style="width: 40px;color:blue" [(ngModel)]="numToShow" (ngModelChange)="keepNumToShow()" /> players
           </p> 
+          <p *ngIf="showWarnMatchups && showMatchups"style="padding: 3%;margin: 0;font-size:12px;color:red">
+            Please input number greater than one.
+          </p> 
+          <p *ngIf="showWarnRank && showRanks"style="padding: 3%;margin: 0;font-size:12px;color:red">
+            Please input number greater than zero.
+          </p>
+          <p *ngIf="players && showWarnOverflow" style="padding: 3%;margin: 0;font-size:12px;color:red">
+            This list only contains {{players.length}} players.
+          </p>
         </div>     
       </div>
       <div class="row" *ngIf="showMatchups">
         <div class="col-md-4">
           <a (click)="choose('a')">
-            <img src={{playera.img}} style="width:60%; border:1px solid #000000"> 
+            <img src={{playera.img}} style="width:80%; border:1px solid #000000"> 
             <p class="name">{{playera.name}}</p>
           </a>
         </div>
@@ -34,27 +43,28 @@
         </div>
         <div class="col-md-4">
           <a (click)="choose('b')">
-            <p class="name">{{playerb.name}}</p>
-            <img src={{playerb.img}} style="width:60%; border:1px solid #000000">
+            <img src={{playerb.img}} style="width:80%; border:1px solid #000000">
+            <p class="name">{{playerb.name}}</p>            
           </a>
         </div>
       </div>
-            <ul *ngIf="showRank" class="list-group" dnd-sortable-container [sortableData]="players">
+            <ul *ngIf="showRanks" class="list-group" dnd-sortable-container [sortableData]="players">
                 <li *ngFor="let player of players | slice:0:numToShow; let i = index;" class="list-group-item" (click)="choosePlayer(player)">
                   <div class="row">
                     <div class="col-5">
-                      <img src={{player.url}} style="width:80%">
+                      <img src={{player.url}} style="width:100%">
+                      <div *ngIf=player.selected class="col-1" style="font-size:12px">
+                          SELECTED
+                      </div>
                     </div>
-                    <div *ngIf=player.selected class="col-1" style="font-size:10px">
-                      SELECTED
-                    </div>
+
                     <div class="col-4">
-                        {{player.first_name}} {{player.last_name}} 
+                        <b>{{player.first_name}} {{player.last_name}} </b>
                         <p class="test">Position: {{player.position}}</p>
-                        <p style="font-size:12px;"> x votes this month</p>
+                        <p style="font-size:12px; color:grey;"> {{player.numVotes}} votes</p>
                       </div>   
                     <div class="col-2">
-                      <p> {{i+1}} </p>
+                      <p style="font-size:40px;"> {{i+1}} </p>
                     </div>
                   </div>
                 </li>
