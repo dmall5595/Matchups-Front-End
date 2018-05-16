@@ -1,0 +1,42 @@
+  <h1>Add List</h1>
+  
+  <div> 
+    <p *ngIf="uploadSuccess">Upload Successful!</p> 
+    <p *ngIf="mainError" style="color:red">{{mainError}}</p>
+    <img *ngIf="mainPic != ''" [src]="mainPic" style="width:50%; margin:1%" (click)="main.click()">
+    <img *ngIf="mainPic === ''" src='../assets/temp.png' (click)="main.click()"  style="width:50%; border:1px solid #000000; margin:1%">
+    <input type="file" #main (change)="previewFile($event, -1)" style="display: none;">
+    <p>
+      <input type="text" placeholder="List Title" style="font-size:18pt; width: 200px;color:blue; margin:1%" [(ngModel)]="list_title" /> <br> 
+      <input type="text" placeholder="Subtitle" style="font-size:12pt; width: 150px;color:blue; margin:1%;" [(ngModel)]="subtitle" />
+    </p>
+  </div>
+  
+  <ul class="list-group">
+    <li *ngFor="let item of items; let i = index" class="list-group-item">
+      <div class="row">
+        <div class="col-4">
+
+	  <img [src]="fileDataUri[i]" style="width:100%;" (click)="piece.click()">
+          <p *ngIf="errorMsg[i]" style="color:red">{{errorMsg[i]}}</p>
+          <img *ngIf="fileDataUri[i] === ''" src='../assets/temp.png' (click)="piece.click()"  style="width:100%; border:1px solid #000000;">
+          <input type="file" #piece (change)="previewFile($event, i)" style="display: none;">
+
+        </div>
+        <div class="col-8" style="text-align: center;">
+	  <p>
+            <input type="text" placeholder="Item Title" style="width: 160px;color:blue; margin:1%;" [(ngModel)]="item.main_title" /> <br>
+	    <input type="text" placeholder={{subtitle}} style="width: 160px;color:blue; margin:1%;" [(ngModel)]="item.sub_title_val" /> <br>
+          <p>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  <div style="text-align: center; padding-bottom: 5%">
+    <button [ngStyle]="{'color':'white', 'background-color':'#1b87e5', 'width':'20%', 'margin': '1%'}" (click)="addOne()" type="button" class="btn">+</button>
+    <button *ngIf="showMinus" [ngStyle]="{'color':'black', 'background-color':'#bec0d6', 'width':'20%', 'margin': '1%'}" (click)="removeOne()" type="button" class="btn">-</button>
+  </div>
+
+  <button [disabled]="uploadClicked" type="button" class="btn" [ngStyle]="{'width':'26%', 'background-color':'#bec0d6', 'margin': '1%'}" (click)="upload()">Upload</button>
+

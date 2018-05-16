@@ -1,0 +1,22 @@
+<h1>Feed</h1>
+
+<ul class="list-group">
+  <li *ngFor="let item of items; let i = index" class="list-group-item" style="padding:5px">
+    <h4 style="font-size:14px;"><a routerLink={{item.collection}}>{{item.title}}</a>
+       <span *ngIf="item.time" style="font-size:8px; float:right; color:#808080">{{item.time}}</span>
+    </h4>
+    <h4 *ngIf="i % 2 === 0 && item.item2" style="font-size:10px;">
+      {{item.username}} chose <b>{{item.item1}}</b> > <b>{{item.item2}}</b>.
+    </h4>
+    <h4 *ngIf="i % 2 != 0 && item.item2" style="font-size:10px;">
+      {{item.username}} chose <b>{{item.item2}}</b> < <b>{{item.item1}}</b>.
+    </h4>
+    <h4 *ngIf="item.item1 && !item.item2" style="font-size:10px;">
+      {{item.username}} added <b>{{item.item1}}</b>.
+    </h4>
+    <h4 *ngIf="item.numItems != undefined" style="font-size:10px;">
+      {{item.username}} created <b>{{item.title}}</b><span *ngIf="item.numItems > 0"> and added <b>{{item.numItems}}</b> item<span *ngIf="item.numItems > 1">s</span> to the list</span>.
+    </h4>
+  </li>
+</ul>
+

@@ -1,0 +1,9 @@
+To resume apache2:
+sudo service apache2 stop
+		     start
+                     restart
+
+
+Links for account authentication:
+Frontend: https://realpython.com/blog/python/user-authentication-with-angular-4-and-flask/
+Backend: https://realpython.com/blog/python/token-based-authentication-with-flask/
