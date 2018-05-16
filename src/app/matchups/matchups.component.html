@@ -1,73 +1,119 @@
-<div class="container">
-    <h1 style="margin:0;">
-      NBA Players
-    </h1>   
-    <div class="numToShow text-center">
-      <div class="row">
-        <div class="col">
-            <p class="selector">
-              <button [ngStyle]="{'color':matchupsText, 'background-color':matchupsBG}" (click)="goToMatchups()" type="button" class="btn"> Matchups</button> 
-              <button [ngStyle]="{'color':ranksText, 'background-color':ranksBG}" (click)="goToRanks()" type="button" class="btn" >Ranks</button>
-            </p> 
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <p *ngIf="showMatchups" style="padding: 3%;margin: 0;font-size:12px;">
-            Matchups from top <input type="number" style="width: 40px;color:blue" [(ngModel)]="numToShow" (ngModelChange)="keepNumToShow()" /> players
-          </p> 
-          <p *ngIf="showRanks" style="padding: 3%;margin: 0;font-size:12px;">
-            Show top <input type="number" style="width: 40px;color:blue" [(ngModel)]="numToShow" (ngModelChange)="keepNumToShow()" /> players
-          </p> 
-          <p *ngIf="showWarnMatchups && showMatchups"style="padding: 3%;margin: 0;font-size:12px;color:red">
-            Please input number greater than one.
-          </p> 
-          <p *ngIf="showWarnRank && showRanks"style="padding: 3%;margin: 0;font-size:12px;color:red">
-            Please input number greater than zero.
-          </p>
-          <p *ngIf="players && showWarnOverflow" style="padding: 3%;margin: 0;font-size:12px;color:red">
-            This list only contains {{players.length}} players.
-          </p>
-        </div>     
-      </div>
-      <div class="row" *ngIf="showMatchups">
-        <div class="col-md-4">
-          <a (click)="choose('a')">
-            <img src={{playera.img}} style="width:80%; border:1px solid #000000"> 
-            <p class="name">{{playera.name}}</p>
-          </a>
-        </div>
-        <div class="col-md-4" style="padding: 3%;">
-          <!-- <p style="padding: 10%;margin: 0;font-size: 40px;">Click to Vote</p> -->
-          <img src='../assets/choose.png' style="width:25%; ">
-        </div>
-        <div class="col-md-4">
-          <a (click)="choose('b')">
-            <img src={{playerb.img}} style="width:80%; border:1px solid #000000">
-            <p class="name">{{playerb.name}}</p>            
-          </a>
-        </div>
-      </div>
-            <ul *ngIf="showRanks" class="list-group" dnd-sortable-container [sortableData]="players">
-                <li *ngFor="let player of players | slice:0:numToShow; let i = index;" class="list-group-item" (click)="choosePlayer(player)">
-                  <div class="row">
-                    <div class="col-5">
-                      <img src={{player.url}} style="width:100%">
-                      <div *ngIf=player.selected class="col-1" style="font-size:12px">
-                          SELECTED
-                      </div>
-                    </div>
+<div style="padding-top: 4px">  
+  <button [ngStyle]="{'background-color':'#bec0d6'}" routerLink="/create-list" type="button" class="btn">Add List</button>
+  <button [ngStyle]="{'background-color':'#bec0d6'}" (click)="open(content)" type="button" class="btn float-right">Add Item</button>
+</div>
 
-                    <div class="col-4">
-                        <b>{{player.first_name}} {{player.last_name}} </b>
-                        <p class="test">Position: {{player.position}}</p>
-                        <p style="font-size:12px; color:grey;"> {{player.numVotes}} votes</p>
-                      </div>   
-                    <div class="col-2">
-                      <p style="font-size:40px;"> {{i+1}} </p>
-                    </div>
-                  </div>
-                </li>
-              </ul>
+<div class="text-center">
+
+  <img src={{listImg}} style="width:50%; padding-top: 5%">
+  <h3>{{listTitle}}</h3>   
+    
+  <div class="numToShow">
+    <div class="row">
+      <div class="col">
+        <p class="selector">
+          <button [ngStyle]="{'color':matchupsText, 'background-color':matchupsBG, 'width':'30%'}" (click)="goToMatchups()" type="button" class="btn"> Matchups</button> 
+          <button [ngStyle]="{'color':ranksText, 'background-color':ranksBG, 'width':'30%'}" (click)="goToRanks()" type="button" class="btn" >Ranks</button>
+        </p> 
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <p *ngIf="showMatchups" style="padding: 3%;margin: 0;font-size:12px;">
+          Matchups from top <input type="number" style="width: 40px;color:blue" [(ngModel)]="numToShow" (ngModelChange)="keepNumToShow()" /> items
+        </p> 
+        <p *ngIf="showRanks" style="padding: 3%;margin: 0;font-size:12px;">
+          Show top <input type="number" style="width: 40px;color:blue" [(ngModel)]="numToShow" (ngModelChange)="keepNumToShow()" /> items
+        </p> 
+        <p *ngIf="showWarnMatchups && showMatchups"style="padding: 3%;margin: 0;font-size:12px;color:red">
+          Please input number greater than one.
+        </p> 
+        <p *ngIf="showWarnRank && showRanks"style="padding: 3%;margin: 0;font-size:12px;color:red">
+          Please input number greater than zero.
+        </p>
+        <p *ngIf="items && showWarnOverflow" style="padding: 3%;margin: 0;font-size:12px;color:red">
+          This list only contains {{items.length}} items.
+        </p>
+      </div>     
+    </div>
+
+    <div class="row" *ngIf="showMatchups">
+      <div class="col-md-5">
+        <a (click)="choose('a')">
+          <img src={{itemA.img}} style="width:80%; border:1px solid #000000"> 
+          <p class="title">{{itemA.title}}</p>
+        </a>
+      </div>
+      <!-- <div class="col-md-2" style="padding: 3%;">
+        <img src='../assets/choose.png' style="width:10%; ">
+      </div> -->
+      <div class="col-md-2 frame">
+        <span class="helper"></span>
+        <img class="difimg" src="../assets/choose.png" style="width:10%"/>
+      </div>
+      <div class="col-md-5">
+        <a (click)="choose('b')">
+          <img src={{itemB.img}} style="width:80%; border:1px solid #000000">
+          <p class="title">{{itemB.title}}</p>            
+        </a>
+      </div>
+    </div>
+            
+    <ul *ngIf="showRanks" class="list-group">
+      <li *ngFor="let item of items | slice:0:numToShow; let i = index;" class="list-group-item" (click)="chooseItem(item)">
+        <div class="row">
+          <div class="col-5">
+            <img src={{item.img}} style="width:100%">
+            <div *ngIf=item.selected class="col-1" style="font-size:12px">
+              SELECTED
+            </div>
+          </div>
+          <div class="col-4">
+            <b>{{item.main_title}}</b>
+            <p class="test">{{sub_title}}: {{item.sub_title_val}}</p>
+            <p style="font-size:12px; color:grey;"> {{item.numVotes}} votes</p>
+          </div>   
+          <div class="col-2">
+            <p style="font-size:40px;"> {{i+1}} </p>
+          </div>
+        </div>
+      </li>
+    </ul>
+
   </div>
+
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Add Item</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-4">
+
+          <p *ngIf="uploadSuccess">
+            <ngb-alert [dismissible]="false" [type]="success">
+              Successful upload of {{numUploaded}} item<span *ngIf="numUploaded > 1">s</span>!
+            </ngb-alert>
+          </p>
+	  <p *ngIf="errorMsg" style="color:red">{{errorMsg}}</p>
+	  <img *ngIf="newImg != ''" [src]="newImg" style="width:100%;" (click)="piece.click()">
+          <img *ngIf="newImg === ''" src='../assets/temp.png' (click)="piece.click()"  style="width:100%; border:1px solid #000000;">
+          <input type="file" #piece (change)="previewFile($event)" style="display: none;">
+
+        </div>
+        <div class="col-8" style="text-align: center;">
+          <p>
+            <input type="text" placeholder="Item Title" style="width: 160px;color:blue; margin:1%;" [(ngModel)]="item.main_title" /> <br>
+            <input type="text" placeholder={{sub_title}} style="width: 160px;color:blue; margin:1%;" [(ngModel)]="item.sub_title_val" /> <br>
+          <p>
+        </div>
+      </div>
+      <button [disabled]="uploadClicked" type="button" class="btn" [ngStyle]="{'width':'26%', 'background-color':'#bec0d6'}" (click)="upload()">Upload</button>
+    </div>
+  </ng-template>
+
 </div>

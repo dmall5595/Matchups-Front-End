@@ -1,4 +1,22 @@
-.name {
+.frame {
+    white-space: nowrap;
+    text-align: center; margin: 1em 0;
+}
+
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.difimg {
+    background: #3A6F9A;
+    vertical-align: middle;
+}
+
+
+
+.title {
     padding: 2px;
     margin: 0;
     color: blue;

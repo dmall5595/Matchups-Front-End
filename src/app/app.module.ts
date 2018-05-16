@@ -1,51 +1,44 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule }   from '@angular/router';
-import { DndModule } from 'ng2-dnd';
 import { FormsModule }   from '@angular/forms';
-import { HttpModule }    from '@angular/http';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-//import {HttpClientModule} from '@angular/common/http';
-
-// Imports for loading & configuring the in-memory web api
-//import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-// import { InMemoryDataService }  from './in-memory-data.service';
+// import { HttpModule }    from '@angular/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { PlayerFeedComponent } from './player-feed/player-feed.component';
-import { PlayerComponent } from './player/player.component';
-import { ArticleComponent } from './article/article.component';
-import { FanRankComponent } from './fan-rank/fan-rank.component';
 import { MatchupsComponent } from './matchups/matchups.component'
 import { HowItWorksComponent } from './how-it-works/how-it-works.component'
 import { MatchupsService } from './matchups.service';
-import { ComingSoonComponent } from './coming-soon/coming-soon.component'
+import { GoogleAnalyticsEventsService } from "./google-analytics-events.service";
+import { CreateListComponent } from './create-list/create-list.component';
+import { AllListsComponent } from './all-lists/all-lists.component';
+import { HelpComponent } from './help/help.component';
+import { FeedComponent } from './feed/feed.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PlayerFeedComponent,
-    PlayerComponent,
-    ArticleComponent,
-    FanRankComponent,
     MatchupsComponent,
     HowItWorksComponent,
-    ComingSoonComponent,
+    CreateListComponent,
+    AllListsComponent,
+    HelpComponent,
+    FeedComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    // HttpModule,
     NgbModule.forRoot(),
-    DndModule.forRoot(),
-    // InMemoryWebApiModule.forRoot(InMemoryDataService),
+    HttpClientModule,
     RouterModule.forRoot([
       {
         path: '',
-        component: HowItWorksComponent
+        component: AllListsComponent
       },
       {
-        path: 'howitworks',
+        path: 'what-is-matchups',
         component: HowItWorksComponent
       },
       {
@@ -53,12 +46,24 @@ import { ComingSoonComponent } from './coming-soon/coming-soon.component'
         component: MatchupsComponent
       },
       {
-        path: 'comingsoon',
-        component: ComingSoonComponent
+        path: 'matchups/:id',
+        component: MatchupsComponent
       },
+      {
+        path: 'help',
+        component: HelpComponent
+      },
+      {
+	path: 'create-list',
+        component: CreateListComponent
+      },
+      {
+        path: 'feed',
+        component: FeedComponent
+      }
     ])
   ],
-  providers: [MatchupsService],
+  providers: [MatchupsService, GoogleAnalyticsEventsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
